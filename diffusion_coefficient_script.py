@@ -19,20 +19,20 @@ coeff = np.polyfit(time, msd, 1)
 slope = coeff[0]
 intercept = coeff[1]
 
-# Calculate R-squared value
+# R-squared
 residuals = msd - (slope * time + intercept)
 ssr = np.sum(residuals**2)
 sst = np.sum((msd - np.mean(msd))**2)
 r_squared = 1 - (ssr / sst)
 
-# Convert time units to ns for left and right tau limits
+# Convert time units left and right tau limits
 left_tau_limit = min(time) / 1000  # Conversion from ps to ns
 right_tau_limit = max(time) / 1000  # Conversion from ps to ns
 
-# Calculate standard error
+# Standard error
 std_err = np.sqrt(ssr / (len(time) - 2))
 
-# Calculate diffusion coefficient
+# Diffusion Coefficient value
 diffusion_coeff = slope / 6.0
 
 print('Left Tau Limit: {:.3f} ns'.format(left_tau_limit))
